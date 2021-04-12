@@ -4,12 +4,13 @@ import { Container } from '@material-ui/core';
 
 const App = () => {
     const { jobs, loading, error } = useFetchJobs();
+    console.log('jobs', jobs, loading, error)
     return (
-        <div>
+        <Container>
             {loading && <h1>Loading...</h1>}
             {error && <h1>Error. Try refreshing</h1>}
             <h1>{jobs.length}</h1>
-        </div>
+        </Container>
     );
 }
 
