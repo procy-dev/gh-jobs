@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useFetchJobs from './hooks/useFetchJobs';
+import useFetchJobs from './Hooks/useFetchJobs';
 import { Container } from 'react-bootstrap';
 
 import Job from './Components/Job';

@@ -1,0 +1,8 @@
+This could easily be applied to many different API's that return large amounts of individual results, even as simple as a search engine like google.
+Styling inline with className/react-bootstrap is really convenient but could get out of hand and hard to maintain if all css isn't in a central location like with material-ui useStyles.
+
+Improvements:
+- Pagination can be improved
+    - Currently loads the pagination items based on the axios request and can show up suddenly since it's async
+    - Caching can be used to make a request for multiple pages (maybe 3-4 within the range of current page) to show more pagination items
+- Axios request cancel doesn't seem to be working consistently and causes many get request which bogs down load times when searching for a specific location/description
