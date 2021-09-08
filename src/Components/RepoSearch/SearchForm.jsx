@@ -6,15 +6,15 @@ const SearchForm = ({ params, onParamChange }) => {
         <Form className="mb-4">
             <Form.Row className="align-items-end">
                 <Form.Group as={Col}>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control onChange={onParamChange} value={params.description} name="description" type="text"/>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control onChange={onParamChange} value={params.description} name="name" type="text"/>
                 </Form.Group>
                 <Form.Group as={Col}>
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control onChange={onParamChange} value={params.location} name="location" type="text"/>
+                    <Form.Label>Language</Form.Label>
+                    <Form.Control onChange={onParamChange} value={params.location} name="language" type="text"/>
                 </Form.Group>
                 <Form.Group as={Col} xs="auto" className="ml-2">
-                    <Form.Check className="mb-2" onChange={onParamChange} value={params.full_time} name="full_time" id="full-time" label="Only Full Time" type="checkbox" />
+                    <Form.Check className="mb-2" value={params.sort === 'stars'} onChange={onParamChange} name="sort" id="sort" label="Sort by Stars" type="checkbox" />
                 </Form.Group>
             </Form.Row>
         </Form>

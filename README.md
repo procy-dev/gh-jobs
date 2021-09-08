@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# GitHub Repository Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application uses the GitHub API to fetch repositories by name or language with the option to filter by star count.
+
+## Known Issues and Possible Solutions
+A few different issues are apparent when using this app but due to the short timeframe, I decided not to implement the possible solutions. Instead, I'll breakdown these issues and their solutions here.
+
+### API Throttling
+The API throttles requests and sends back a 403 code if the limit is exceeded in a short period of time. It's fairly easy to exceed that limit when quickly skipping through the pages or submitting many search requests at once. This can be avoided by fetching larger amounts per query and then paginating based on locally cached data. Up to 100 items can be returned per API call which would provide up to 10 pages on the application meaning we would only have to make an API call for more data every 10 pages.
+
+This could also be assisted by checking if the data we're calling for has been modified. If the API responds with a 304, we can just used the cached data since we'd be getting the same information back.
+
+### Back/Refreshing Pages
+When going back or refreshing the pages, there is a bug that prevents certain fields from re-populating with old state. This could be solved by having a more standard state preservation in the window location history and repopulating the fields through useEffect.
+
+### API Item Limit
+The API limits the total items that can be searched to 1000 items total so the pagination prevents going past page 100.
+
+### Stars/Watcher
+The API currently has a bug that causes the stargazers_count and watchers attributes to give the same number. I was unable to find a workaround and no other attribute in the response was suitable for these fields.
 
 ## Available Scripts
 
@@ -14,11 +31,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -28,43 +40,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
